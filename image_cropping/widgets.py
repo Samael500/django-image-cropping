@@ -7,8 +7,10 @@ from django.contrib.admin.widgets import AdminFileWidget, ForeignKeyRawIdWidget
 from easy_thumbnails.files import get_thumbnailer
 from easy_thumbnails.source_generators import pil_image
 from .config import settings
+from random import randint
 
 logger = logging.getLogger(__name__)
+rand_url = lambda url: '{url}?{num}'.format(url=url, num=randint(10000, 99999))
 
 
 def thumbnail(image_path):
@@ -42,7 +44,7 @@ def get_attrs(image, name):
             height = image.height
         return {
             'class': "crop-thumb",
-            'data-thumbnail-url': thumbnail(image).url,
+            'data-thumbnail-url': rand_url(thumbnail(image).url),
             'data-field-name': name,
             'data-org-width': width,
             'data-org-height': height,
