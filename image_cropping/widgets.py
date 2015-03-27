@@ -35,13 +35,13 @@ def get_attrs(image, name):
         # image has already been read using this file handler
         image.seek(0)
 
-        try:
-            # open image and rotate according to its exif.orientation
-            width, height = pil_image(image).size
-        except AttributeError:
-            # invalid image -> AttributeError
-            width = image.width
-            height = image.height
+        # try:
+        #     # open image and rotate according to its exif.orientation
+        #     width, height = pil_image(image).size
+        # except AttributeError:
+        #     # invalid image -> AttributeError
+        width = image.width
+        height = image.height
         return {
             'class': "crop-thumb",
             'data-thumbnail-url': rand_url(thumbnail(image).url),
